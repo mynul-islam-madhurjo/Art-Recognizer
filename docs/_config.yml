@@ -7,3 +7,6 @@ description: An image classification API that classifies 10 different types of a
 
 author:
   name: Mynul Islam
+
+sass:
+  style: :compressed
