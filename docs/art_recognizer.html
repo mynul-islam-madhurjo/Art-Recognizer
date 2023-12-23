@@ -1,11 +1,25 @@
 ---
-title: Art Recognizer
+title: Cap Recognizer
 layout: page
 ---
 
-<script
-	type="module"
-	src="https://gradio.s3-us-west-2.amazonaws.com/4.9.0/gradio.js"
-></script>
+<input id="photo" type="file">
+<div id="results"></div>
+<script type = "module">
+    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
 
-<gradio-app src="https://mynul-islam-madhurjo-arts-recognizer.hf.space"></gradio-app>
+    async function loaded(reader) {
+        const app = await client("https://mhdhrubo-indian-classical-musical-instrument-rec-e68e3ec.hf.space/--replicas/87352tsbp/");
+        const response = await app.predict("/predict", [reader.result]);
+        const label = response['data'][0]['label'];
+        results.innerHTML = `<br/> <img src = "${reader.result}" width="500"> <p>${label}</p>`;
+    }
+    function read() {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => loaded(reader))
+        reader.readAsDataURL(photo.files[0]);
+    }
+    photo.addEventListener('input', read);
+
+
+</script>
