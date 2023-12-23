@@ -10,3 +10,6 @@ author:
 
 sass:
   style: :compressed
+
+include:
+  - styles.css
