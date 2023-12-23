@@ -10,7 +10,7 @@ layout: page
     import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
 
     async function loaded(reader) {
-        const app = await client("https://mynul-islam-madhurjo-arts-recognizer.hf.space/--replicas/xre9i/");
+        const app = await client("https://mynul-islam-madhurjo-arts-recognizer.hf.space/--replicas/v5kmu/");
         const response = await app.predict("/predict", [reader.result]);
         const label = response['data'][0]['label'];
 
